@@ -1,0 +1,8 @@
+*.pyc
+secret/
+.DS_Store
+_build/
+files/
+log/
+tmp/
+v/

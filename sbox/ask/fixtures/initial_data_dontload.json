@@ -1,0 +1,489 @@
+[
+  {
+    "pk": 3, 
+    "model": "ask.choiceset", 
+    "fields": {
+      "name": "demo_choiceset", 
+      "prompt_wording": ""
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "ask.choiceset", 
+    "fields": {
+      "name": "female", 
+      "prompt_wording": ""
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "ask.choiceset", 
+    "fields": {
+      "name": "yes_no_defaultyes", 
+      "prompt_wording": ""
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "ask.asker", 
+    "fields": {
+      "show_progress": true, 
+      "page_title": "", 
+      "reference": "generic-add-document", 
+      "hide_menu": false
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "ask.asker", 
+    "fields": {
+      "show_progress": true, 
+      "page_title": "Demo Questionnaire", 
+      "reference": "demonstration_questionnaire", 
+      "hide_menu": false
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "ask.choice", 
+    "fields": {
+      "is_default_value": false, 
+      "choiceset": 2, 
+      "score": 0, 
+      "order": 0, 
+      "label": "No"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "ask.choice", 
+    "fields": {
+      "is_default_value": false, 
+      "choiceset": 1, 
+      "score": 1, 
+      "order": 1, 
+      "label": "Female"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "ask.choice", 
+    "fields": {
+      "is_default_value": true, 
+      "choiceset": 2, 
+      "score": 1, 
+      "order": 1, 
+      "label": "Yes"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "ask.choice", 
+    "fields": {
+      "is_default_value": true, 
+      "choiceset": 3, 
+      "score": 1, 
+      "order": 1, 
+      "label": "Blue"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "ask.choice", 
+    "fields": {
+      "is_default_value": false, 
+      "choiceset": 1, 
+      "score": 0, 
+      "order": 2, 
+      "label": "Male"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "ask.choice", 
+    "fields": {
+      "is_default_value": false, 
+      "choiceset": 3, 
+      "score": 2, 
+      "order": 2, 
+      "label": "Green"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "ask.choice", 
+    "fields": {
+      "is_default_value": false, 
+      "choiceset": 3, 
+      "score": 3, 
+      "order": 3, 
+      "label": "Red"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "checkboxes", 
+      "text": "Checkboxes are a pain to validate properly in html!", 
+      "choiceset": 3, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:30:46.495", 
+      "scoresheet": null, 
+      "variable_name": "demo_checkbox", 
+      "help_text": "", 
+      "variable_label": "Checkboxes are a pain to validate properly in html!", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "date", 
+      "text": "Also nice to be able to enter dates", 
+      "choiceset": null, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:28:30.113", 
+      "scoresheet": null, 
+      "variable_name": "demo_date", 
+      "help_text": "", 
+      "variable_label": "Also nice to be able to enter dates", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "instruction", 
+      "text": "# Instructions here\r\n\r\nWe can use any markdown syntax we like, e.g.\r\n\r\n- Lists\r\n- And ordered lists\r\n\r\nOr **bold**, *italic* etc.", 
+      "choiceset": null, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:27:44.832", 
+      "scoresheet": null, 
+      "variable_name": "demo_instruction", 
+      "help_text": "", 
+      "variable_label": "", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "integer", 
+      "text": "This requires an integer answer", 
+      "choiceset": null, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:30:14.473", 
+      "scoresheet": null, 
+      "variable_name": "demo_integer", 
+      "help_text": "", 
+      "variable_label": "This requires an integer answer", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "likert-list", 
+      "text": "A list of radio buttons", 
+      "choiceset": 1, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:25:00.411", 
+      "scoresheet": null, 
+      "variable_name": "demo_list", 
+      "help_text": "", 
+      "variable_label": "A list of radio buttons", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "long-text", 
+      "text": "A large text box", 
+      "choiceset": null, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:26:28.959", 
+      "scoresheet": null, 
+      "variable_name": "demo_longtext", 
+      "help_text": "", 
+      "variable_label": "A large text box", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "pulldown", 
+      "text": "A pulldown menu", 
+      "choiceset": 3, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:25:52.186", 
+      "scoresheet": null, 
+      "variable_name": "demo_pulldown", 
+      "help_text": "", 
+      "variable_label": "A pulldown menu", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "likert", 
+      "text": "A likert type question", 
+      "choiceset": 2, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:24:30.965", 
+      "scoresheet": null, 
+      "variable_name": "demo_scale", 
+      "help_text": "", 
+      "variable_label": "A likert type question", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "ask.question", 
+    "fields": {
+      "q_type": "short-text", 
+      "text": "Enter a short text answer", 
+      "choiceset": null, 
+      "widget_kwargs": "", 
+      "last_modified": "2012-12-03T20:26:16.542", 
+      "scoresheet": null, 
+      "variable_name": "demo_shorttext", 
+      "help_text": "", 
+      "variable_label": "Enter a short text answer", 
+      "always_required": false, 
+      "audio": "", 
+      "field_kwargs": ""
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 9, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 7, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 8, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 2, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 5, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 3, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 1, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "ask.questioninaskpage", 
+    "fields": {
+      "showif": null, 
+      "allow_not_applicable": false, 
+      "required": false, 
+      "question": 4, 
+      "page": 26, 
+      "order": 0.0
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "Driver behaviour questionnaire"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "Food Thoughts Inventory"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "IMP Drink Driving"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "IMP Healthy Living"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "IMP Mobile Phone "
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "IMP Speed"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "Risky Driving Behaviour Frequencies"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "State Trait Anxiety Instrument - Trait"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": "", 
+      "citation": "", 
+      "name": "State-Trait Anxiety Inventory - State"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "ask.instrument", 
+    "fields": {
+      "usage_information": null, 
+      "citation": null, 
+      "name": "new instrument includeing stais_am_jittery created 2012-12-04 21:17:15.789036"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "ask.askpage", 
+    "fields": {
+      "asker": 16, 
+      "order": 0.0, 
+      "internal_name": "first"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "ask.askpage", 
+    "fields": {
+      "asker": 17, 
+      "order": 0.0, 
+      "internal_name": "first"
+    }
+  }
+]
