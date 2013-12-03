@@ -101,7 +101,6 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'cms',
     "compressor",
-    'cmsmenu_redirect',
     'registration',
     'south',
     'mptt',
