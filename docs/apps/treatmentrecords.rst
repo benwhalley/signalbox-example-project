@@ -1,2 +1,0 @@
-Therapist treatment records
-===========================

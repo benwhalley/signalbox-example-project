@@ -1,2 +1,2 @@
-web: python app/manage.py runserver 0.0.0.0:$PORT --noreload
+web: app/manage.py collectstatic --noinput; gunicorn -w 2 app.wsgi:application
 

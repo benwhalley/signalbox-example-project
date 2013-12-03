@@ -1,4 +1,0 @@
-Score sheets
-=============
-
-xxx todo
