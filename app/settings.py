@@ -79,6 +79,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sekizai.context_processors.sekizai',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    'signalbox.context_processors.globals',
 )
 
 INSTALLED_APPS = [
