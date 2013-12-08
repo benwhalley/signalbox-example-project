@@ -57,6 +57,7 @@ MIDDLEWARE_CLASSES = (
     'signalbox.middleware.adminmenumiddleware.AdminMenuMiddleware',
     'signalbox.middleware.permissiondenied.PermissionDeniedToLoginMiddleware',
     'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
+    'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
     "djangosecure.middleware.SecurityMiddleware",
     'django.middleware.locale.LocaleMiddleware',
 )
