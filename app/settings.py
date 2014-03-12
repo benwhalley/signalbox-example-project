@@ -27,6 +27,17 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 
+from fnmatch import fnmatch
+class glob_list(list):
+    def __contains__(self, key):
+        for elt in self:
+            if fnmatch(key, elt): return True
+        return False
+
+INTERNAL_IPS = glob_list([
+    '127.0.0.1',
+    '141.163.66.*'
+])
 
 ##### STANDARD DJANGO STUFF #####
 ROOT_URLCONF = 'urls'
@@ -57,6 +68,7 @@ MIDDLEWARE_CLASSES = (
     'signalbox.middleware.adminmenumiddleware.AdminMenuMiddleware',
     'signalbox.middleware.permissiondenied.PermissionDeniedToLoginMiddleware',
     'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
+    'signalbox.middleware.superuser.UserBasedExceptionMiddleware',
     'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
     "djangosecure.middleware.SecurityMiddleware",
     'django.middleware.locale.LocaleMiddleware',
