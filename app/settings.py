@@ -135,7 +135,6 @@ INSTALLED_APPS = [
     # 'cmsplugin_simple_markdown',
     'floppyforms',
     'bootstrap-pagination',
-    'kronos',
     'gunicorn',
 ]
 
@@ -162,9 +161,6 @@ if DEBUG:
 # REGISTRATION #
 AUTH_PROFILE_MODULE = 'signalbox.UserProfile'
 
-# cron jobs for scheduled tasks
-KRONOS_MANAGE = os.path.join(DJANGO_PATH, "app/manage.py")
-
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda o: "/accounts/profile/",
 }
@@ -174,8 +170,6 @@ LANGUAGE_CODE = 'en-uk'
 TIME_ZONE = 'Europe/London'
 USE_I18N = False
 USE_L10N = False
-
-
 
 
 ##### CMS #####
