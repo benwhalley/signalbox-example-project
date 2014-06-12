@@ -23,15 +23,21 @@ USER_UPLOAD_STORAGE_BACKEND = 'signalbox.s3.PrivateRootS3BotoStorage'
 MAIN_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'signalbox.s3.MediaRootS3BotoStorage'
 
-STATIC_ROOT = 'staticfiles'
+COMPRESS_ROOT = STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+TEMPLATE_STRING_IF_INVALID = ""
 
 from fnmatch import fnmatch
+
+
 class glob_list(list):
     def __contains__(self, key):
         for elt in self:
-            if fnmatch(key, elt): return True
+            if fnmatch(key, elt):
+                return True
         return False
 
 INTERNAL_IPS = glob_list([
@@ -49,30 +55,31 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
-
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # reversion must go after transaction
     'django.middleware.transaction.TransactionMiddleware',
-    'reversion.middleware.RevisionMiddleware',
+    USE_VERSIONING and 'reversion.middleware.RevisionMiddleware' or None,
     # 'cms.middleware.page.CurrentPageMiddleware',
     # 'cms.middleware.user.CurrentUserMiddleware',
     # 'cms.middleware.toolbar.ToolbarMiddleware',
     # 'cms.middleware.language.LanguageCookieMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'signalbox.middleware.filter_persist_middleware.FilterPersistMiddleware',
-    # 'signalbox.middleware.cms_page_permissions_middleware.CmsPagePermissionsMiddleware',
     'signalbox.middleware.loginformmiddleware.LoginFormMiddleware',
     'signalbox.middleware.adminmenumiddleware.AdminMenuMiddleware',
-    'signalbox.middleware.permissiondenied.PermissionDeniedToLoginMiddleware',
-    'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
-    'signalbox.middleware.superuser.UserBasedExceptionMiddleware',
-    'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
+    # 'signalbox.middleware.permissiondenied.PermissionDeniedToLoginMiddleware',
+    # 'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
+    # 'signalbox.middleware.superuser.UserBasedExceptionMiddleware',
+    # 'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
     "djangosecure.middleware.SecurityMiddleware",
     'django.middleware.locale.LocaleMiddleware',
+
 )
+
+MIDDLEWARE_CLASSES = filter(bool, MIDDLEWARE_CLASSES)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -115,7 +122,6 @@ INSTALLED_APPS = [
     # 'cms',
     "compressor",
     'registration',
-    'south',
     'mptt',
     USE_VERSIONING and 'reversion' or None,
     'django_extensions',
@@ -132,6 +138,8 @@ INSTALLED_APPS = [
     'kronos',
     'gunicorn',
 ]
+
+
 # filter out conditionally-skipped apps (which create None's)
 INSTALLED_APPS = filter(bool, INSTALLED_APPS)
 
@@ -162,7 +170,7 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 
-LANGUAGE_CODE='en-uk'
+LANGUAGE_CODE = 'en-uk'
 TIME_ZONE = 'Europe/London'
 USE_I18N = False
 USE_L10N = False
@@ -173,8 +181,7 @@ USE_L10N = False
 ##### CMS #####
 
 PLACEHOLDER_FRONTEND_EDITING = True
-SOUTH_TESTS_MIGRATE = False
-CMS_REDIRECTS=True
+CMS_REDIRECTS = True
 
 CMS_TEMPLATES = (
     ('base.html', 'base'),
@@ -193,18 +200,16 @@ CMS_LANGUAGES = {
                 'name': 'English',
                 'public': True,
                 'hide_untranslated': True,
-                'redirect_on_fallback':False,
+                'redirect_on_fallback': False,
             },
         ],
         'default': {
-            'fallbacks': ['en-uk',],
+            'fallbacks': ['en-uk', ],
             'public': False,
-            'redirect_on_fallback':True,
+            'redirect_on_fallback': True,
             'hide_untranslated': False,
         }
     }
-
-
 
 
 LOGGING = {
@@ -239,10 +244,18 @@ LOGGING = {
         'level': 'DEBUG',
         'propagate': True,
     },
+    'profiling': {
+        'handlers': LOG_DATABASE_QUERIES and ['console'] or ['null'],
+        'level': 'DEBUG',
+        'propagate': True,
+    },
     'django.db.backends': {
                 'handlers': ['null'],  # Quiet by default!
                 'propagate': False,
-                'level':'DEBUG',
+                'level': 'DEBUG',
                 },
 }
 }
+
+
+PROFILING_LOGGER_NAME = "profiling"
