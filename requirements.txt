@@ -9,4 +9,4 @@ django-smtp-ssl>=1.0
 boto==2.9.8
 dj-database-url==0.2.1
 -e git+https://github.com/kennethreitz/dj-static.git#egg=dj-static
--e git+http://github.com/puterleat/signalbox.git@master#egg=signalbox
+-e git+https://github.com/puterleat/signalbox.git@master#egg=signalbox
