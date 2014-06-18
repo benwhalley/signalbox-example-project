@@ -210,45 +210,76 @@ CMS_LANGUAGES = {
     }
 
 
+# LOGGING = {
+#     'version': 1,
+#     'formatters': {
+#     'verbose': {
+#         'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+#     },
+#         'simple': {
+#         'format': '%(levelname)s %(message)s'
+#         },
+#     },
+# 'handlers': {
+#     'null': {
+#         'level': 'DEBUG',
+#         'class': 'django.utils.log.NullHandler',
+#     },
+#     'console': {
+#         'level': 'DEBUG',
+#         'class': 'logging.StreamHandler',
+#         'formatter': 'simple'
+#     },
+# },
+# 'loggers': {
+#     'django': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',
+#         'propagate': True,
+#     },
+#     'signalbox': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',
+#         'propagate': True,
+#     },
+
+#     'django.db.backends': {
+#                 'handlers': ['null'],  # Quiet by default!
+#                 'propagate': False,
+#                 'level': 'DEBUG',
+#                 },
+# }
+# }
+
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers': False,
     'formatters': {
-    'verbose': {
-        'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-    },
-        'simple': {
-        'format': '%(levelname)s %(message)s'
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
         },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
     },
-'handlers': {
-    'null': {
-        'level': 'DEBUG',
-        'class': 'django.utils.log.NullHandler',
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
     },
-    'console': {
-        'level': 'DEBUG',
-        'class': 'logging.StreamHandler',
-        'formatter': 'simple'
-    },
-},
-'loggers': {
-    'django': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-        'propagate': True,
-    },
-    'signalbox': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-        'propagate': True,
-    },
-
-    'django.db.backends': {
-                'handlers': ['null'],  # Quiet by default!
-                'propagate': False,
-                'level': 'DEBUG',
-                },
+    'loggers': {
+        'testlogger': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
+    }
 }
-}
-
-
