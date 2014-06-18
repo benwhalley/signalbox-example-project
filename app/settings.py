@@ -11,6 +11,10 @@ import string
 
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
+# needed because of a bug in compressor which otherwise crashes the debug view
+COMPRESS_JINJA2_GET_ENVIRONMENT="None"
+
+
 from signalbox.configurable_settings import *
 from signalbox.settings import *
 
@@ -238,11 +242,7 @@ LOGGING = {
         'level': 'DEBUG',
         'propagate': True,
     },
-    'profiling': {
-        'handlers': LOG_DATABASE_QUERIES and ['console'] or ['null'],
-        'level': 'DEBUG',
-        'propagate': True,
-    },
+
     'django.db.backends': {
                 'handlers': ['null'],  # Quiet by default!
                 'propagate': False,
@@ -252,4 +252,3 @@ LOGGING = {
 }
 
 
-PROFILING_LOGGER_NAME = "profiling"
