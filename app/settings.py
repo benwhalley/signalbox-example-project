@@ -283,3 +283,4 @@ LOGGING = {
         }
     }
 }
+# COMPRESS_ENABLED=False
