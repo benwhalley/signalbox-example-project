@@ -170,7 +170,7 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 
-LANGUAGE_CODE = 'en-uk'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'Europe/London'
 USE_I18N = False
 USE_L10N = False
