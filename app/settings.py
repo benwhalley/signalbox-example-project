@@ -18,6 +18,9 @@ COMPRESS_JINJA2_GET_ENVIRONMENT="None"
 from signalbox.configurable_settings import *
 from signalbox.settings import *
 
+
+GOOGLE_TRACKING_ID = get_env_var('GOOGLE_TRACKING_ID', default="")
+
 HERE = os.path.realpath(os.path.dirname(__file__))
 PROJECT_PATH, SETTINGS_DIR = os.path.split(HERE)
 DJANGO_PATH, APP_NAME = os.path.split(PROJECT_PATH)
