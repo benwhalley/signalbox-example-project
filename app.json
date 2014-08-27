@@ -4,7 +4,8 @@
   "addons": [
     "scheduler:standard",
     "pgbackups:auto-month",
-    "heroku-postgresql"
+    "heroku-postgresql",
+    "mailgun"
   ],
   "env": {
     "SECRET_KEY": {
@@ -23,20 +24,8 @@
       "description": "The name of an AWS S3 bucket to use for static files",
       "required": true
     },
-    "EMAIL_HOST": {
-      "description": "Your SMTP hostname.",
-      "required": true
-    },
-    "EMAIL_HOST_USER": {
-      "description": "A username with access on the SMTP server.",
-      "required": true
-    },
-    "EMAIL_HOST_PASSWORD": {
-      "description": "SMTP password.",
-      "required": true
-    },
     "TWILIO_ID": {
-      "description": "Your Twilio ID (required for SMS and phone calls)",
+      "description": "Your Twilio ID (required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
       "required": false
     },
     "TWILIO_TOKEN": {
