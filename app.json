@@ -8,7 +8,7 @@
   ],
   "env": {
     "SECRET_KEY": {
-      "description": "A secret key for Django"
+      "description": "A secret key for Django",
       "generator": "secret"
     },
     "TWILIO_ID": {
