@@ -19,7 +19,7 @@ from signalbox.configurable_settings import *
 from signalbox.settings import *
 
 
-GOOGLE_TRACKING_ID = get_env_var('GOOGLE_TRACKING_ID', default="")
+GOOGLE_TRACKING_ID = get_env_variable('GOOGLE_TRACKING_ID', default="")
 
 HERE = os.path.realpath(os.path.dirname(__file__))
 PROJECT_PATH, SETTINGS_DIR = os.path.split(HERE)
