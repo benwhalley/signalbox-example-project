@@ -1,4 +1,47 @@
 {
   "name": "SignalBox Example Project",
-  "description": "Run your own SignalBox"
+  "description": "Run your own SignalBox",
+  "addons": [
+    "scheduler:standard",
+    "pgbackups:auto-month",
+    "heroku-postgresql:dev"
+  ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "A secret key for Django"
+      "generator": "secret"
+    },
+    "TWILIO_ID": {
+      "description": "Your Twilio ID.",
+      "required": true
+    },
+    "TWILIO_TOKEN": {
+      "description": "Your Twilio Token.",
+      "required": true
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "description": "Your AWS Key ID.",
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "Your AWS Access key.",
+      "required": true
+    },
+    "AWS_STORAGE_BUCKET_NAME": {
+      "description": "The name of an AWS S3 bucket to use for static files",
+      "required": true
+    },
+    "EMAIL_HOST": {
+      "description": "Your SMTP hostname.",
+      "required": true
+    },
+    "EMAIL_HOST_USER": {
+      "description": "A username with access on the SMTP server.",
+      "required": true
+    },
+    "EMAIL_HOST_PASSWORD": {
+      "description": "SMTP password.",
+      "required": true
+    }
+  }
 }
