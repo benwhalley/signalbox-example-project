@@ -1,11 +1,10 @@
 {
   "name": "Signalbox Example Project",
   "description": "TODO: Add a short description about Signalbox Example Project",
-
   "addons": [
     "scheduler:standard",
     "pgbackups:auto-month",
-    "heroku-postgresql:dev",
+    "heroku-postgresql:dev"
   ],
   "env": {
     "SECRET_KEY": {"generator": "secret"},
@@ -19,6 +18,6 @@
     "SECURE_SSL_REDIRECT": "0",
     "AWS_STORAGE_BUCKET_NAME": "thesignalbox",
     "DEBUG": "0",
-    "WEB_TIMEOUT": "30",
+    "WEB_TIMEOUT": "30"
   }
 }
