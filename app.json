@@ -2,6 +2,8 @@
   "name": "SignalBox Example Project",
   "description": "Run your own SignalBox",
   "addons": [
+    "scheduler:standard",
+    "pgbackups:auto-month",
     "heroku-postgresql"
   ],
   "env": {
