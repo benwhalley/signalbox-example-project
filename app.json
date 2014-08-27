@@ -2,7 +2,7 @@
   "name": "SignalBox Example Project",
   "description": "Run your own SignalBox",
   "addons": [
-    "heroku-postgresql:dev"
+    "heroku-postgresql"
   ],
   "env": {
     "SECRET_KEY": {
