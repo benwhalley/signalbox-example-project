@@ -1,0 +1,24 @@
+{
+  "name": "Signalbox Example Project",
+  "description": "TODO: Add a short description about Signalbox Example Project",
+
+  "addons": [
+    "scheduler:standard",
+    "pgbackups:auto-month",
+    "heroku-postgresql:dev",
+  ],
+  "env": {
+    "SECRET_KEY": {"generator": "secret"},
+    "TWILIO_ID": {},
+    "TWILIO_TOKEN": {},
+    "AWS_ACCESS_KEY_ID": {},
+    "AWS_SECRET_ACCESS_KEY": {},
+    "EMAIL_HOST_USER": {},
+    "EMAIL_HOST_PASSWORD": {},
+    "EMAIL_HOST": {},
+    "SECURE_SSL_REDIRECT": "0",
+    "AWS_STORAGE_BUCKET_NAME": "thesignalbox",
+    "DEBUG": "0",
+    "WEB_TIMEOUT": "30",
+  }
+}
