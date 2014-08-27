@@ -11,14 +11,6 @@
       "description": "A secret key for Django",
       "generator": "secret"
     },
-    "TWILIO_ID": {
-      "description": "Your Twilio ID.",
-      "required": true
-    },
-    "TWILIO_TOKEN": {
-      "description": "Your Twilio Token.",
-      "required": true
-    },
     "AWS_ACCESS_KEY_ID": {
       "description": "Your AWS Key ID.",
       "required": true
@@ -42,6 +34,15 @@
     "EMAIL_HOST_PASSWORD": {
       "description": "SMTP password.",
       "required": true
+    },
+    "TWILIO_ID": {
+      "description": "Your Twilio ID (required for SMS and phone calls)",
+      "required": false
+    },
+    "TWILIO_TOKEN": {
+      "description": "Your Twilio Token.",
+      "required": false
     }
+
   }
 }
