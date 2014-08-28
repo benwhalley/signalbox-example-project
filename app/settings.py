@@ -19,6 +19,22 @@ from signalbox.configurable_settings import *
 from signalbox.settings import *
 
 
+# amazon files settings
+AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID', default="")
+AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY', default="")
+AWS_STORAGE_BUCKET_NAME = get_env_variable(
+    "AWS_STORAGE_BUCKET_NAME", default="signalbox",
+    warning="Specify an S3 bucket name in which to store uploaded files."
+)
+COMPRESS_ENABLED = get_env_variable('COMPRESS_ENABLED', default=True)
+AWS_QUERYSTRING_AUTH = get_env_variable('AWS_QUERYSTRING_AUTH', default=False)
+
+# keep these secret
+SECRET_KEY = get_env_variable('SECRET_KEY', default=shortuuid.uuid())
+TWILIO_ID = get_env_variable('TWILIO_ID', required=False)
+TWILIO_TOKEN = get_env_variable('TWILIO_TOKEN', required=False)
+
+
 GOOGLE_TRACKING_ID = get_env_variable('GOOGLE_TRACKING_ID', default="")
 
 
@@ -28,7 +44,7 @@ GOOGLE_TRACKING_ID = get_env_variable('GOOGLE_TRACKING_ID', default="")
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = get_env_variable('MAILGUN_SMTP_SERVER', required=False, warning="Set an smtp hostname.")
-EMAIL_PORT = int(get_env_variable('MAILGUN_SMTP_PORT', required=False, default="465", warning="SMTP port defaulting to 465."))
+EMAIL_PORT = int(get_env_variable('MAILGUN_SMTP_PORT', required=False, default="587", warning="SMTP port defaulting to 465."))
 EMAIL_HOST_USER = get_env_variable('MAILGUN_SMTP_LOGIN', required=False, )
 EMAIL_HOST_PASSWORD = get_env_variable('MAILGUN_SMTP_PASSWORD', required=False, )
 
@@ -83,10 +99,6 @@ MIDDLEWARE_CLASSES = (
     # reversion must go after transaction
     'django.middleware.transaction.TransactionMiddleware',
     USE_VERSIONING and 'reversion.middleware.RevisionMiddleware' or None,
-    # 'cms.middleware.page.CurrentPageMiddleware',
-    # 'cms.middleware.user.CurrentUserMiddleware',
-    # 'cms.middleware.toolbar.ToolbarMiddleware',
-    # 'cms.middleware.language.LanguageCookieMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'signalbox.middleware.filter_persist_middleware.FilterPersistMiddleware',
     'signalbox.middleware.loginformmiddleware.LoginFormMiddleware',
@@ -116,7 +128,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
-    # 'cms.context_processors.media',
     'sekizai.context_processors.sekizai',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
@@ -140,7 +151,6 @@ INSTALLED_APPS = [
     'django_admin_bootstrapped',
     'admin_tools.dashboard',
     'django.contrib.admin',
-    # 'cms',
     "compressor",
     'registration',
     'mptt',
@@ -150,10 +160,6 @@ INSTALLED_APPS = [
     'sekizai',
     'selectable',
     'storages',
-    # 'cms.plugins.picture',
-    # 'cms.plugins.file',
-    # 'cms.plugins.snippet',
-    # 'cmsplugin_simple_markdown',
     'floppyforms',
     'bootstrap-pagination',
     'gunicorn',
@@ -192,81 +198,6 @@ TIME_ZONE = 'Europe/London'
 USE_I18N = False
 USE_L10N = False
 
-
-##### CMS #####
-
-PLACEHOLDER_FRONTEND_EDITING = True
-CMS_REDIRECTS = True
-
-CMS_TEMPLATES = (
-    ('base.html', 'base'),
-    ('home.html', 'home'),
-    ('two.html', 'two'),
-)
-
-LANGUAGES = (
-    ('en-uk', 'English'),
-)
-
-CMS_LANGUAGES = {
-        1: [
-            {
-                'code': 'en-uk',
-                'name': 'English',
-                'public': True,
-                'hide_untranslated': True,
-                'redirect_on_fallback': False,
-            },
-        ],
-        'default': {
-            'fallbacks': ['en-uk', ],
-            'public': False,
-            'redirect_on_fallback': True,
-            'hide_untranslated': False,
-        }
-    }
-
-
-# LOGGING = {
-#     'version': 1,
-#     'formatters': {
-#     'verbose': {
-#         'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-#     },
-#         'simple': {
-#         'format': '%(levelname)s %(message)s'
-#         },
-#     },
-# 'handlers': {
-#     'null': {
-#         'level': 'DEBUG',
-#         'class': 'django.utils.log.NullHandler',
-#     },
-#     'console': {
-#         'level': 'DEBUG',
-#         'class': 'logging.StreamHandler',
-#         'formatter': 'simple'
-#     },
-# },
-# 'loggers': {
-#     'django': {
-#         'handlers': ['console'],
-#         'level': 'DEBUG',
-#         'propagate': True,
-#     },
-#     'signalbox': {
-#         'handlers': ['console'],
-#         'level': 'DEBUG',
-#         'propagate': True,
-#     },
-
-#     'django.db.backends': {
-#                 'handlers': ['null'],  # Quiet by default!
-#                 'propagate': False,
-#                 'level': 'DEBUG',
-#                 },
-# }
-# }
 
 LOGGING = {
     'version': 1,

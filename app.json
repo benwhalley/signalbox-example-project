@@ -12,18 +12,7 @@
       "description": "A secret key for Django",
       "generator": "secret"
     },
-    "AWS_ACCESS_KEY_ID": {
-      "description": "Your AWS Key ID.",
-      "required": true
-    },
-    "AWS_SECRET_ACCESS_KEY": {
-      "description": "Your AWS Access key.",
-      "required": true
-    },
-    "AWS_STORAGE_BUCKET_NAME": {
-      "description": "The name of an AWS S3 bucket to use for static files",
-      "required": true
-    },
+
     "TWILIO_ID": {
       "description": "Your Twilio ID (required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
       "required": false
