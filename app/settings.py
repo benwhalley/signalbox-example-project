@@ -30,7 +30,6 @@ COMPRESS_ENABLED = get_env_variable('COMPRESS_ENABLED', default=True)
 AWS_QUERYSTRING_AUTH = get_env_variable('AWS_QUERYSTRING_AUTH', default=False)
 
 # keep these secret
-SECRET_KEY = get_env_variable('SECRET_KEY', default=shortuuid.uuid())
 TWILIO_ID = get_env_variable('TWILIO_ID', required=False)
 TWILIO_TOKEN = get_env_variable('TWILIO_TOKEN', required=False)
 
