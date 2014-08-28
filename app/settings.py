@@ -21,6 +21,19 @@ from signalbox.settings import *
 
 GOOGLE_TRACKING_ID = get_env_variable('GOOGLE_TRACKING_ID', default="")
 
+
+##### EMAIL #####
+
+# # TODO: allow for non-mailgun backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = get_env_variable('MAILGUN_SMTP_SERVER', required=False, warning="Set an smtp hostname.")
+EMAIL_PORT = int(get_env_variable('MAILGUN_SMTP_PORT', required=False, default="465", warning="SMTP port defaulting to 465."))
+EMAIL_HOST_USER = get_env_variable('MAILGUN_SMTP_LOGIN', required=False, )
+EMAIL_HOST_PASSWORD = get_env_variable('MAILGUN_SMTP_PASSWORD', required=False, )
+
+
+
 HERE = os.path.realpath(os.path.dirname(__file__))
 PROJECT_PATH, SETTINGS_DIR = os.path.split(HERE)
 DJANGO_PATH, APP_NAME = os.path.split(PROJECT_PATH)
@@ -38,6 +51,7 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 TEMPLATE_STRING_IF_INVALID = ""
 
 from fnmatch import fnmatch
+
 
 
 class glob_list(list):
