@@ -15,7 +15,6 @@ sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 # needed because of a bug in compressor which otherwise crashes the debug view
 COMPRESS_JINJA2_GET_ENVIRONMENT="None"
 
-
 from signalbox.configurable_settings import *
 from signalbox.settings import *
 
