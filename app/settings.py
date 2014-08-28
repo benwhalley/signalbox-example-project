@@ -63,11 +63,17 @@ DJANGO_PATH, APP_NAME = os.path.split(PROJECT_PATH)
 
 #####  FILEs  #####
 USER_UPLOAD_STORAGE_BACKEND = 'signalbox.s3.PrivateRootS3BotoStorage'
-MAIN_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'signalbox.s3.MediaRootS3BotoStorage'
+# MAIN_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'signalbox.s3.MediaRootS3BotoStorage'
 
-COMPRESS_ROOT = STATIC_ROOT = 'staticfiles'
+
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_PATH, 'static'),
+)
+
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
@@ -124,7 +130,7 @@ MIDDLEWARE_CLASSES = filter(bool, MIDDLEWARE_CLASSES)
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
     'compressor.finders.CompressorFinder',
 )
 
