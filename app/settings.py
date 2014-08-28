@@ -2,6 +2,7 @@
 from django.core.files.storage import FileSystemStorage
 from signalbox.configurable_settings import *
 from signalbox.utilities.get_env_variable import get_env_variable
+import twilio
 from twilio.rest import TwilioRestClient
 import imp
 import sys
