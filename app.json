@@ -1,12 +1,18 @@
 {
   "name": "SignalBox Example Project",
   "description": "Run your own SignalBox",
+  "success_url": "/admin/"
   "addons": [
     "scheduler:standard",
     "pgbackups:auto-month",
     "heroku-postgresql",
     "mailgun"
   ],
+  {
+    "scripts": {
+      "postdeploy": "python manage.py syncdb --noinput"
+    }
+  }
   "env": {
     "SECRET_KEY": {
       "description": "A secret key for Django",
