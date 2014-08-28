@@ -37,7 +37,7 @@ TWILIO_TOKEN = get_env_variable('TWILIO_TOKEN', required=False)
 # setup twilio based on settings above
 try:
     TWILIOCLIENT = TwilioRestClient(TWILIO_ID, TWILIO_TOKEN)
-except twilio.TwilioException:
+except twilio.exceptions.TwilioException:
     TWILIOCLIENT = None
 
 
