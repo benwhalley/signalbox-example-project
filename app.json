@@ -9,7 +9,7 @@
         "mailgun"
     ],
     "scripts": {
-        "postdeploy": "echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', '$DJANGO_ADMIN_USER_EMAIL', '$DJANGO_ADMIN_USER_PASSWORD'); exit()\" | heroku run ./manage.py shell"
+        "postdeploy": "python manage.py syncdb --noinput"
     },
     "env": {
         "SECRET_KEY": {
