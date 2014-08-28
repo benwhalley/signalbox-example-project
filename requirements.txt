@@ -4,11 +4,8 @@ django-cms==2.4.3
 django-mptt==0.5.2
 psycopg2==2.4.1
 gunicorn==17.5
-django-smtp-ssl>=1.0
 -e git+https://github.com/django-compressor/django-compressor.git#egg=django-compressor
 -e hg+https://bitbucket.org/david/django-storages@02afdf3d27871a3588ede24b00e4fdb9e99cd807#egg=django_storages-dev
 boto==2.9.8
 dj-database-url==0.2.1
 -e git+https://github.com/kennethreitz/dj-static.git#egg=dj-static
-ndg-httpsclient
-pyopenssl
