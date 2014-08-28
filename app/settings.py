@@ -34,6 +34,13 @@ SECRET_KEY = get_env_variable('SECRET_KEY', default=shortuuid.uuid())
 TWILIO_ID = get_env_variable('TWILIO_ID', required=False)
 TWILIO_TOKEN = get_env_variable('TWILIO_TOKEN', required=False)
 
+# DO SOME EXTRA SETUP BASED ON THESE VALUES
+# setup twilio based on settings above
+try:
+    TWILIOCLIENT = TwilioRestClient(TWILIO_ID, TWILIO_TOKEN)
+except twilio.TwilioException:
+    TWILIOCLIENT = None
+
 
 GOOGLE_TRACKING_ID = get_env_variable('GOOGLE_TRACKING_ID', default="")
 
