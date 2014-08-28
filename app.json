@@ -1,43 +1,36 @@
 {
-  "name": "SignalBox Example Project",
-  "description": "Run your own SignalBox",
-  "success_url": "/admin/"
-  "addons": [
-    "scheduler:standard",
-    "pgbackups:auto-month",
-    "heroku-postgresql",
-    "mailgun"
-  ],
-  {
+    "name": "SignalBox Example Project",
+    "description": "Run your own SignalBox",
+    "success_url": "/admin/",
+    "addons": [
+        "scheduler:standard",
+        "pgbackups:auto-month",
+        "heroku-postgresql",
+        "mailgun"
+    ],
     "scripts": {
-      "postdeploy": "python manage.py syncdb --noinput",
-      "postdeploy": "echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', '$DJANGO_ADMIN_USER_EMAIL', '$DJANGO_ADMIN_USER_PASSWORD'); exit()\" | heroku run ./manage.py shell"
+        "postdeploy": "echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', '$DJANGO_ADMIN_USER_EMAIL', '$DJANGO_ADMIN_USER_PASSWORD'); exit()\" | heroku run ./manage.py shell"
+    },
+    "env": {
+        "SECRET_KEY": {
+            "description": "A secret key for Django",
+            "generator": "secret"
+        },
+        "DJANGO_ADMIN_USER_PASSWORD": {
+            "description": "A password for the default 'admin' user",
+            "required": true
+        },
+        "DJANGO_ADMIN_USER_EMAIL": {
+            "description": "The email address for the default 'admin' user",
+            "required": true
+        },
+        "TWILIO_ID": {
+            "description": "Your Twilio ID (required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
+            "required": false
+        },
+        "TWILIO_TOKEN": {
+            "description": "Your Twilio Token.",
+            "required": false
+        }
     }
-  }
-  "env": {
-    "SECRET_KEY": {
-      "description": "A secret key for Django",
-      "generator": "secret"
-    },
-
-    "DJANGO_ADMIN_USER_PASSWORD": {
-      "description": "A password for the default 'admin' user",
-      "required": true
-    },
-
-    "DJANGO_ADMIN_USER_EMAIL": {
-      "description": "The email address for the default 'admin' user",
-      "required": true
-    },
-
-    "TWILIO_ID": {
-      "description": "Your Twilio ID (required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
-      "required": false
-    },
-    "TWILIO_TOKEN": {
-      "description": "Your Twilio Token.",
-      "required": false
-    }
-
-  }
 }
