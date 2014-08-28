@@ -10,13 +10,24 @@
   ],
   {
     "scripts": {
-      "postdeploy": "python manage.py syncdb --noinput"
+      "postdeploy": "python manage.py syncdb --noinput",
+      "postdeploy": "echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', '$DJANGO_ADMIN_USER_EMAIL', '$DJANGO_ADMIN_USER_PASSWORD'); exit()\" | heroku run ./manage.py shell"
     }
   }
   "env": {
     "SECRET_KEY": {
       "description": "A secret key for Django",
       "generator": "secret"
+    },
+
+    "DJANGO_ADMIN_USER_PASSWORD": {
+      "description": "A password for the default 'admin' user",
+      "required": true
+    },
+
+    "DJANGO_ADMIN_USER_EMAIL": {
+      "description": "The email address for the default 'admin' user",
+      "required": true
     },
 
     "TWILIO_ID": {
