@@ -81,6 +81,9 @@ ROOT_URLCONF = 'urls'
 SITE_ID = 1
 SESSION_ENGINE = "django.contrib.sessions.backends.file"
 
+LOG_DATABASE_QUERIES = get_env_variable('LOG_DATABASE_QUERIES', default=False)
+
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.common.CommonMiddleware',
