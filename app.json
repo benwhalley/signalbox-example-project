@@ -1,7 +1,7 @@
 {
     "name": "SignalBox Example Project",
     "description": "Run your own SignalBox",
-    "success_url": "/admin/",
+    "success_url": "http://www.thesignalbox.net/deploy/final-setup.html",
     "addons": [
         "scheduler:standard",
         "pgbackups:auto-month",
