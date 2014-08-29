@@ -9,8 +9,7 @@
         "mailgun"
     ],
     "scripts": {
-        "postdeploy": "python manage.py syncdb --noinput",
-        "postdeploy": "bash makesuperuser.sh"
+        "postdeploy": "bash finishinstall.sh"
     },
     "env": {
         "SECRET_KEY": {
