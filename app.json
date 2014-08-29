@@ -17,6 +17,10 @@
             "description": "A secret key for Django",
             "generator": "secret"
         },
+        "BRAND_NAME":{
+            "description": "The name of your organisaion, or a name to appear in the banner of the website.",
+            "default": "Signalbox"
+        },
         "DJANGO_ADMIN_USER_PASSWORD": {
             "description": "A password for the default 'admin' user",
             "required": true
@@ -25,12 +29,25 @@
             "description": "The email address for the default 'admin' user",
             "required": true
         },
+
         "TWILIO_ID": {
-            "description": "Your Twilio ID (required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
+            "description": "Your Twilio ID (optional; required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
             "required": false
         },
         "TWILIO_TOKEN": {
-            "description": "Your Twilio Token.",
+            "description": "Your Twilio Token (optional).",
+            "required": false
+        },
+        "AWS_ACCESS_KEY_ID": {
+            "description": "Your AWS KEY ID (optional; required for study images and user-file uploads).",
+            "required": false
+        },
+        "AWS_SECRET_ACCESS_KEY": {
+            "description": "Your AWS token (optional).",
+            "required": false
+        },
+        "AWS_STORAGE_BUCKET_NAME": {
+            "description": "The AWS bucket to use for file storage (optional).",
             "required": false
         }
     }

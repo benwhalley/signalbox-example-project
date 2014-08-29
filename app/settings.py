@@ -13,7 +13,8 @@ import string
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
 # needed because of a bug in compressor which otherwise crashes the debug view
-COMPRESS_JINJA2_GET_ENVIRONMENT="None"
+COMPRESS_JINJA2_GET_ENVIRONMENT = "None"
+
 
 from signalbox.configurable_settings import *
 from signalbox.settings import *
@@ -22,36 +23,17 @@ from signalbox.settings import *
 # amazon files settings
 AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID', default="")
 AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY', default="")
-AWS_STORAGE_BUCKET_NAME = get_env_variable(
-    "AWS_STORAGE_BUCKET_NAME", default="signalbox",
-    warning="Specify an S3 bucket name in which to store uploaded files."
-)
+AWS_STORAGE_BUCKET_NAME = get_env_variable("AWS_STORAGE_BUCKET_NAME", default="",)
 COMPRESS_ENABLED = get_env_variable('COMPRESS_ENABLED', default=True)
 AWS_QUERYSTRING_AUTH = get_env_variable('AWS_QUERYSTRING_AUTH', default=False)
 
-# keep these secret
-TWILIO_ID = get_env_variable('TWILIO_ID', required=False)
-TWILIO_TOKEN = get_env_variable('TWILIO_TOKEN', required=False)
 
-# DO SOME EXTRA SETUP BASED ON THESE VALUES
-# setup twilio based on settings above
-try:
-    TWILIOCLIENT = TwilioRestClient(TWILIO_ID, TWILIO_TOKEN)
-except twilio.exceptions.TwilioException:
-    TWILIOCLIENT = None
+##### OVERRIDING EMAIL SETTINGS #####
 
-
-GOOGLE_TRACKING_ID = get_env_variable('GOOGLE_TRACKING_ID', default="")
-
-
-##### EMAIL #####
-
-# # TODO: allow for non-mailgun backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = get_env_variable('MAILGUN_SMTP_SERVER', required=False, warning="Set an smtp hostname.")
-EMAIL_PORT = int(get_env_variable('MAILGUN_SMTP_PORT', required=False, default="587", warning="SMTP port defaulting to 465."))
-EMAIL_HOST_USER = get_env_variable('MAILGUN_SMTP_LOGIN', required=False, )
+EMAIL_HOST = get_env_variable('MAILGUN_SMTP_SERVER', required=False)
+EMAIL_PORT = int(get_env_variable('MAILGUN_SMTP_PORT', required=False, default="587"))
+EMAIL_HOST_USER = get_env_variable('MAILGUN_SMTP_LOGIN', required=False)
 EMAIL_HOST_PASSWORD = get_env_variable('MAILGUN_SMTP_PASSWORD', required=False, )
 
 
@@ -158,7 +140,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-
     'django.contrib.humanize',
     'django_admin_bootstrapped',
     'admin_tools.dashboard',
@@ -175,6 +156,7 @@ INSTALLED_APPS = [
     'floppyforms',
     'bootstrap-pagination',
     'gunicorn',
+    'database_files'
 ]
 
 
@@ -203,13 +185,6 @@ AUTH_PROFILE_MODULE = 'signalbox.UserProfile'
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda o: "/accounts/profile/",
 }
-
-
-LANGUAGE_CODE = 'en'
-TIME_ZONE = 'Europe/London'
-USE_I18N = False
-USE_L10N = False
-
 
 LOGGING = {
     'version': 1,
@@ -243,4 +218,12 @@ LOGGING = {
         }
     }
 }
-# COMPRESS_ENABLED=False
+
+
+
+# Pre load some models when we use shell_plus for convenience in using the repl
+SHELL_PLUS_PRE_IMPORTS = (
+    ('signalbox.models', ('*',)),
+    ('ask.models', '*'),
+    ('django.contrib.auth.models', 'User'),
+)
