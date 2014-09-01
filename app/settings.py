@@ -159,7 +159,6 @@ INSTALLED_APPS = [
     'floppyforms',
     'bootstrap-pagination',
     'gunicorn',
-    'database_files'
 ]
 
 
