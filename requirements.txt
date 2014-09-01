@@ -9,4 +9,5 @@ gunicorn==17.5
 boto==2.9.8
 dj-database-url==0.2.1
 dj-static
-https://github.com/macropin/django-registration/archive/v1.0.zip
+https://github.com/macropin/django-registration/archive/b77f6fab7acfe195c3a63b34f808ddae93ad12c4.zip
+
