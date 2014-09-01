@@ -1,6 +1,9 @@
 import os, sys
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 
+import django
+django.setup()
+
 from django.core.wsgi import get_wsgi_application
 import django.core.handlers.wsgi
 from dj_static import Cling
