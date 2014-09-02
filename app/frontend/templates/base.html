@@ -2,7 +2,7 @@
 {% load signalbox_tags %}
 {% load sekizai_tags %}
 {% load markup %}
-{% load cache menu_tags %}
+{% load cache %}
 {% load i18n %}
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
 
                     {% if not hidemenu %}
                       <ul class="nav">
-                        {% show_menu 0 2  2 2  "menu.html" %}
+
                       </ul>
                     {% endif %}
 
@@ -67,7 +67,7 @@
                 <div class="span6">
                     {% block submenu %}
                       <ul class="nav nav-pills">
-                           {% show_menu 1 10 0 1 "sub_menu.html" %}
+                        {# xxx #}
                       </ul>
                     {% endblock submenu %}
                 </div>
