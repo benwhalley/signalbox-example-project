@@ -158,7 +158,6 @@ INSTALLED_APPS = [
     'storages',
     'floppyforms',
     'bootstrap-pagination',
-    'gunicorn',
 ]
 
 
