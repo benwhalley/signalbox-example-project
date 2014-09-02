@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import os, sys
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 
