@@ -1,4 +1,4 @@
-https://github.com/django/django/tarball/1.7c3
+django==1.7
 -e git+https://github.com/puterleat/signalbox.git@master#egg=signalbox
 django-extensions==1.3.6
 django-mptt==0.5.2
@@ -10,4 +10,3 @@ boto==2.9.8
 dj-database-url==0.2.1
 dj-static
 https://github.com/macropin/django-registration/archive/b77f6fab7acfe195c3a63b34f808ddae93ad12c4.zip
-

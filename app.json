@@ -21,15 +21,14 @@
             "description": "The name of your organisaion, or a name to appear in the banner of the website.",
             "default": "Signalbox"
         },
-        "DJANGO_ADMIN_USER_PASSWORD": {
-            "description": "A password for the default 'admin' user",
-            "required": true
-        },
         "DJANGO_ADMIN_USER_EMAIL": {
             "description": "The email address for the default 'admin' user",
             "required": true
         },
-
+        "DJANGO_ADMIN_USER_PASSWORD": {
+            "description": "A password for the default 'admin' user",
+            "required": true
+        },
         "TWILIO_ID": {
             "description": "Your Twilio ID (optional; required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
             "required": false
