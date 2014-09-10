@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load sekizai_tags %}
+
+{% block base_content %}
+<div class="row">
+    <div class="span12">
+        <h1>You're almost done!</h1>
+
+
+
+
+
+        <h3>Adding scheduled tasks</h3>
+
+        <p>One task remains after the automatic setp: you must configure the scheduled tasks which periodically send emails, SMS messages and make telephone calls. Go to your <a href="https://dashboard-next.heroku.com/apps/">Heroku dashboard page</a>, select your new app, and click on the button marked scheduled tasks.
+
+
+        <p>Add two new tasks, entering the following commands to be run either hourly or every 10 minutes, depending on your needs:
+
+        <p>
+            <code>python manage.py send</code>
+
+        <p>and
+
+        <p>
+            <code>python manage.py send</code>
+
+
+        <p> The simply login, using the form in the header of this page.
+
+
+
+        <h3>Limitations of the free heroku plan</h3>
+
+        <p>Running under the free plan you are limited to a database of 9mb, and 300 emails sent per day. If you require more than you can scale up (and pay for) more resources on the Heroku dashboard.
+
+        <p>You may also find that your application is slow to respond if there have been no visits for more than 10 minutes. See <a href="https://blog.heroku.com/archives/2013/6/20/app_sleeping_on_heroku">here</a> for why this occurs and to official way to avoid it (it involves paying for at least one web dyno). <a href="http://stackoverflow.com/questions/5480337/easy-way-to-prevent-heroku-idling">This page</a> also offers useful suggestions for those on a budget.
+
+
+
+    </div>
+</div>
+{% endblock %}
+{% render_block "js" %}

@@ -17,4 +17,5 @@ urlpatterns = i18n_patterns('',
         # (r'^', include('cms.urls')),
         (r'^reset/password/$', password_reset, {}),
         (r'^robots\.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+        (r'^complete/setup/', TemplateView.as_view(template_name='complete.html')),
 )

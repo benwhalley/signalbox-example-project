@@ -1,7 +1,7 @@
 {
     "name": "SignalBox Example Project",
-    "description": "Run your own SignalBox",
-    "success_url": "http://www.thesignalbox.net/deploy/final-setup.html",
+    "description": "Run your own SignalBox. (Note, once you enter your details the application build process can take about 10 minutes, so be patient).",
+    "success_url": "/complete/setup/",
     "addons": [
         "scheduler:standard",
         "pgbackups:auto-month",
@@ -9,7 +9,7 @@
         "mailgun"
     ],
     "scripts": {
-        "postdeploy": "bash finishinstall.sh"
+        "postdeploy": "finishinstall.sh"
     },
     "env": {
         "SECRET_KEY": {
