@@ -9,7 +9,6 @@
         "mailgun"
     ],
     "scripts": {
-        "postdeploy": "python manage.py syncdb --noinput",
         "postdeploy": "bash finishinstall.sh"
     },
     "env": {
