@@ -101,7 +101,7 @@ MIDDLEWARE_CLASSES = (
     'signalbox.middleware.loginformmiddleware.LoginFormMiddleware',
     'signalbox.middleware.adminmenumiddleware.AdminMenuMiddleware',
     # 'signalbox.middleware.permissiondenied.PermissionDeniedToLoginMiddleware',
-    # 'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
+    'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
     # 'signalbox.middleware.superuser.UserBasedExceptionMiddleware',
     # 'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
     "djangosecure.middleware.SecurityMiddleware",
