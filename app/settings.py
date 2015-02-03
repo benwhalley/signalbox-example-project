@@ -10,6 +10,7 @@ import os
 import socket
 import string
 
+
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
 # needed because of a bug in compressor which otherwise crashes the debug view
@@ -93,17 +94,20 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
     # reversion must go after transaction
     'django.middleware.transaction.TransactionMiddleware',
+
     USE_VERSIONING and 'reversion.middleware.RevisionMiddleware' or None,
+
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
+
     'signalbox.middleware.filter_persist_middleware.FilterPersistMiddleware',
     'signalbox.middleware.loginformmiddleware.LoginFormMiddleware',
     'signalbox.middleware.adminmenumiddleware.AdminMenuMiddleware',
-    # 'signalbox.middleware.permissiondenied.PermissionDeniedToLoginMiddleware',
     'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
-    # 'signalbox.middleware.superuser.UserBasedExceptionMiddleware',
-    # 'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
+    'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
+
     "djangosecure.middleware.SecurityMiddleware",
     'django.middleware.locale.LocaleMiddleware',
 
