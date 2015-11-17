@@ -320,3 +320,11 @@ DEBUG_TOOLBAR_PANELS = [
 
 CACHALOT_ENABLED = get_env_variable('CACHALOT_ENABLED', default=True)
 
+# this is just the default
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
