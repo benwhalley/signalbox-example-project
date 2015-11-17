@@ -9,6 +9,7 @@ import sys
 import os
 import socket
 import string
+import contracts
 
 
 # This must be set but using random string#
@@ -27,6 +28,11 @@ except IndexError:
 # yaml setting - can be set as "true" or "false" but not "True"/"False"
 DEBUG = bool(get_env_variable('DEBUG', required=False, default=False, as_yaml=True))
 
+
+# Disable pycontracts in production for performance reasons.
+CONTRACTS_ENABLED = get_env_variable('CONTRACTS_ENABLED', default=False)
+if not CONTRACTS_ENABLED:
+    contracts.disable_all()
 
 
 # Display and admin functionality
@@ -199,6 +205,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'debug_toolbar',
     'mathfilters',
+    'cachalot',
 ]
 
 
@@ -289,3 +296,27 @@ SESSION_COOKIE_SECURE = get_env_variable('SESSION_COOKIE_SECURE', default=False)
 
 # SECURITY BITS WHICH ARE NOT CUSTOMISABLE FROM ENV VARS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+
+
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'cachalot.panels.CachalotPanel',
+]
+
+
+
+CACHALOT_ENABLED = get_env_variable('CACHALOT_ENABLED', default=True)
+
