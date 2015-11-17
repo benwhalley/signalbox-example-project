@@ -11,6 +11,42 @@ import socket
 import string
 
 
+# This must be set but using random string#
+SECRET_KEY = get_env_variable('SECRET_KEY',
+    required=True,
+    default=shortuuid.uuid(),
+    warning="USING RANDOM SECRET KEY - SESSIONS MAY NOT PERSIST")
+
+
+try:
+    TESTING = 'test' == sys.argv[1]
+except IndexError:
+    TESTING = False
+
+
+# yaml setting - can be set as "true" or "false" but not "True"/"False"
+DEBUG = bool(get_env_variable('DEBUG', required=False, default=False, as_yaml=True))
+
+
+
+# Display and admin functionality
+USE_I18N = False
+USE_L10N = False
+LANGUAGE_CODE = get_env_variable('LANGUAGE_CODE', default='en')
+TIME_ZONE = get_env_variable('TIME_ZONE', default='Europe/London')
+
+
+# the name of the site which appears in the header
+BRAND_NAME = get_env_variable('BRAND_NAME', default="SignalBox")
+
+
+# BACKEND
+os.environ["REUSE_DB"] = "1" # a sensible default
+DB_URL = get_env_variable('DATABASE_URL', required=False, default="postgres://localhost/sbox")
+DATABASES = {'default': dj_database_url.config(default=DB_URL)}
+
+
+
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
 # needed because of a bug in compressor which otherwise crashes the debug view
@@ -86,7 +122,7 @@ LOG_DATABASE_QUERIES = get_env_variable('LOG_DATABASE_QUERIES', default=False)
 
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.gzip.GZipMiddleware',
+    # 'django.middleware.gzip.GZipMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
@@ -95,8 +131,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 
-    # reversion must go after transaction
-    'django.middleware.transaction.TransactionMiddleware',
 
     USE_VERSIONING and 'reversion.middleware.RevisionMiddleware' or None,
 
@@ -112,6 +146,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
 
 )
+
+ATOMIC_REQUESTS = True
 
 MIDDLEWARE_CLASSES = filter(bool, MIDDLEWARE_CLASSES)
 
@@ -149,11 +185,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django_admin_bootstrapped',
-    'admin_tools.dashboard',
     'django.contrib.admin',
     "compressor",
     'registration',
-    'mptt',
     USE_VERSIONING and 'reversion' or None,
     'django_extensions',
     'menus',
@@ -161,7 +195,10 @@ INSTALLED_APPS = [
     'selectable',
     'storages',
     'floppyforms',
-    'bootstrap-pagination',
+    'bootstrap_pagination',
+    'rest_framework',
+    'debug_toolbar',
+    'mathfilters',
 ]
 
 
@@ -172,6 +209,7 @@ TEMPLATE_LOADERS = (
     'apptemplates.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.filesystem.Loader',
+    'admin_tools.template_loaders.Loader',
 )
 
 # caching enabled because floppyforms is slow otherwise; disable for development
@@ -232,3 +270,22 @@ SHELL_PLUS_PRE_IMPORTS = (
     ('ask.models', '*'),
     ('django.contrib.auth.models', 'User'),
 )
+
+
+# security-related settings
+# see https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = get_env_variable('ALLOWED_HOSTS', default="127.0.0.1;.herokuapp.com").split(";")
+SESSION_COOKIE_HTTPONLY = get_env_variable('SESSION_COOKIE_HTTPONLY', default=True)
+SECURE_FRAME_DENY = True
+SECURE_BROWSER_XSS_FILTER = get_env_variable('SECURE_BROWSER_XSS_FILTER', default=True)
+SECURE_CONTENT_TYPE_NOSNIFF = get_env_variable('SECURE_CONTENT_TYPE_NOSNIFF', default=True)
+SECURE_SSL_REDIRECT = get_env_variable('SECURE_SSL_REDIRECT', required=False, default=False)
+SESSION_COOKIE_AGE = get_env_variable('SESSION_COOKIE_AGE', default=2 * 60 * 60)  # 2 hours in seconds
+SESSION_SAVE_EVERY_REQUEST = get_env_variable('SESSION_SAVE_EVERY_REQUEST', default=True)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = get_env_variable('SESSION_EXPIRE_AT_BROWSER_CLOSE', default=True)
+
+# disable secure cookies not a great idea?
+SESSION_COOKIE_SECURE = get_env_variable('SESSION_COOKIE_SECURE', default=False)
+
+# SECURITY BITS WHICH ARE NOT CUSTOMISABLE FROM ENV VARS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
