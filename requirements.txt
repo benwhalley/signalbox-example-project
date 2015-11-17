@@ -1,7 +1,7 @@
-django==1.7
--e git+https://github.com/puterleat/signalbox.git@master#egg=signalbox
+django>=1.8
+-e git+https://github.com/benwhalley/signalbox.git@master#egg=signalbox
 django-extensions==1.5.9
-psycopg2==2.4.1
+psycopg2==2.4.5
 waitress==0.8.9
 django-compressor==1.4
 django-secure
