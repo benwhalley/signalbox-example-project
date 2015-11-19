@@ -9,7 +9,7 @@ import sys
 import os
 import socket
 import string
-import contracts
+
 
 
 # This must be set but using random string#
@@ -27,12 +27,6 @@ except IndexError:
 
 # yaml setting - can be set as "true" or "false" but not "True"/"False"
 DEBUG = bool(get_env_variable('DEBUG', required=False, default=False, as_yaml=True))
-
-
-# Disable pycontracts in production for performance reasons.
-CONTRACTS_ENABLED = get_env_variable('CONTRACTS_ENABLED', default=False)
-if not CONTRACTS_ENABLED:
-    contracts.disable_all()
 
 
 # Display and admin functionality
