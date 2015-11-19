@@ -210,7 +210,7 @@ TEMPLATE_LOADERS = (
     'apptemplates.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.filesystem.Loader',
-    'admin_tools.template_loaders.Loader',
+    # 'admin_tools.template_loaders.Loader',
 )
 
 # caching enabled because floppyforms is slow otherwise; disable for development
