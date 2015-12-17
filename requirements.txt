@@ -6,7 +6,7 @@ waitress==0.8.9
 django-compressor==1.4
 django-secure
 -e hg+https://bitbucket.org/david/django-storages@02afdf3d27871a3588ede24b00e4fdb9e99cd807#egg=django_storages-dev
-boto==2.9.8
+boto==2.38.0
 dj-database-url==0.2.1
 dj-static==0.0.6
 django-registration-redux==1.2
