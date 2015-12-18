@@ -149,7 +149,7 @@ MIDDLEWARE_CLASSES = (
 
 ATOMIC_REQUESTS = True
 
-MIDDLEWARE_CLASSES = filter(bool, MIDDLEWARE_CLASSES)
+MIDDLEWARE_CLASSES = list(filter(bool, MIDDLEWARE_CLASSES))
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -158,18 +158,41 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'sekizai.context_processors.sekizai',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-    'signalbox.context_processors.globals',
+
+_TEMPLATE_LOADERS = (
+    'apptemplates.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader',
+    # 'admin_tools.template_loaders.Loader',
 )
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'OPTIONS':{
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.request',
+                'django.core.context_processors.media',
+                'django.core.context_processors.static',
+                'sekizai.context_processors.sekizai',
+                'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
+                'signalbox.context_processors.globals',
+            ),
+            'loaders': (
+                ('django.template.loaders.cached.Loader', _TEMPLATE_LOADERS),
+            )
+        },
+    },
+]
+
+
+# caching enabled because floppyforms is slow otherwise; disable for development
+
+
 
 INSTALLED_APPS = [
     'frontend',
@@ -204,24 +227,7 @@ INSTALLED_APPS = [
 
 
 # filter out conditionally-skipped apps (which create None's)
-INSTALLED_APPS = filter(bool, INSTALLED_APPS)
-
-TEMPLATE_LOADERS = (
-    'apptemplates.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.filesystem.Loader',
-    # 'admin_tools.template_loaders.Loader',
-)
-
-# caching enabled because floppyforms is slow otherwise; disable for development
-TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
-)
-
-# turn off template caching/debugging in debug environment
-TEMPLATE_DEBUG = DEBUG
-if DEBUG:
-    TEMPLATE_LOADERS = TEMPLATE_LOADERS[0][1]
+INSTALLED_APPS = list(filter(bool, INSTALLED_APPS))
 
 # REGISTRATION #
 AUTH_PROFILE_MODULE = 'signalbox.UserProfile'
