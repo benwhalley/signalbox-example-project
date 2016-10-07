@@ -320,8 +320,7 @@ DEBUG_TOOLBAR_PANELS = [
 
 
 
-CACHALOT_ENABLED = False #get_env_variable('CACHALOT_ENABLED', default=True)
-COMPRESS_ENABLED = False
+CACHALOT_ENABLED = get_env_variable('CACHALOT_ENABLED', default=True)
 # this is just the default
 CACHES = {
     'default': {
