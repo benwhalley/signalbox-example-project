@@ -12,3 +12,4 @@ dj-static==0.0.6
 django-registration-redux==1.2
 django-debug-toolbar
 django-cachalot
+Cython==0.24.1
