@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.conf.urls import include, patterns, url
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from django.conf import settings
@@ -16,3 +16,10 @@ urlpatterns = [
     url(r'^robots\.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     url(r'^complete/setup/', TemplateView.as_view(template_name='complete.html')),
 ]
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += patterns('',
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )

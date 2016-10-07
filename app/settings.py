@@ -123,6 +123,8 @@ LOG_DATABASE_QUERIES = get_env_variable('LOG_DATABASE_QUERIES', default=False)
 
 MIDDLEWARE_CLASSES = (
     # 'django.middleware.gzip.GZipMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
@@ -144,7 +146,6 @@ MIDDLEWARE_CLASSES = (
 
     "djangosecure.middleware.SecurityMiddleware",
     'django.middleware.locale.LocaleMiddleware',
-
 )
 
 ATOMIC_REQUESTS = True
@@ -298,6 +299,7 @@ SESSION_COOKIE_SECURE = get_env_variable('SESSION_COOKIE_SECURE', default=False)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 
 DEBUG_TOOLBAR_PANELS = [
@@ -312,18 +314,18 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.cache.CachePanel',
     'debug_toolbar.panels.signals.SignalsPanel',
     'debug_toolbar.panels.logging.LoggingPanel',
-    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel'
     # 'cachalot.panels.CachalotPanel',
 ]
 
 
 
-CACHALOT_ENABLED = get_env_variable('CACHALOT_ENABLED', default=True)
-
+CACHALOT_ENABLED = False #get_env_variable('CACHALOT_ENABLED', default=True)
+COMPRESS_ENABLED = False
 # this is just the default
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
+        'LOCATION': 'unique-snowflake2',
     }
 }
