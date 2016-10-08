@@ -10,6 +10,7 @@ import os
 import socket
 import string
 
+sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
 
 # This must be set but using random string#
@@ -47,12 +48,6 @@ DATABASES = {'default': dj_database_url.config(default=DB_URL)}
 
 
 
-sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
-
-# needed because of a bug in compressor which otherwise crashes the debug view
-COMPRESS_JINJA2_GET_ENVIRONMENT = "None"
-
-
 from signalbox.configurable_settings import *
 from signalbox.settings import *
 
@@ -61,7 +56,6 @@ from signalbox.settings import *
 AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID', default="")
 AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY', default="")
 AWS_STORAGE_BUCKET_NAME = get_env_variable("AWS_STORAGE_BUCKET_NAME", default="",)
-COMPRESS_ENABLED = get_env_variable('COMPRESS_ENABLED', default=True)
 AWS_QUERYSTRING_AUTH = get_env_variable('AWS_QUERYSTRING_AUTH', default=False)
 
 
@@ -85,33 +79,12 @@ USER_UPLOAD_STORAGE_BACKEND = 'signalbox.s3.PrivateRootS3BotoStorage'
 # DEFAULT_FILE_STORAGE = 'signalbox.s3.MediaRootS3BotoStorage'
 
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, 'static'),
-)
-
-
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 TEMPLATE_STRING_IF_INVALID = ""
 
-from fnmatch import fnmatch
-
-
-
-class glob_list(list):
-    def __contains__(self, key):
-        for elt in self:
-            if fnmatch(key, elt):
-                return True
-        return False
-
-INTERNAL_IPS = glob_list([
-    '127.0.0.1',
-    '141.163.66.*'
-])
 
 ##### STANDARD DJANGO STUFF #####
 ROOT_URLCONF = 'urls'
@@ -122,28 +95,20 @@ LOG_DATABASE_QUERIES = get_env_variable('LOG_DATABASE_QUERIES', default=False)
 
 
 MIDDLEWARE_CLASSES = (
-    # 'django.middleware.gzip.GZipMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-
-
     USE_VERSIONING and 'reversion.middleware.RevisionMiddleware' or None,
-
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
-
     'signalbox.middleware.filter_persist_middleware.FilterPersistMiddleware',
     'signalbox.middleware.loginformmiddleware.LoginFormMiddleware',
     'signalbox.middleware.adminmenumiddleware.AdminMenuMiddleware',
     'signalbox.middleware.error_messages_middleware.ErrorMessagesMiddleware',
     'twiliobox.middleware.speak_error_messages_middleware.SpeakErrorMessagesMiddleware',
-
     "djangosecure.middleware.SecurityMiddleware",
     'django.middleware.locale.LocaleMiddleware',
 )
@@ -152,19 +117,10 @@ ATOMIC_REQUESTS = True
 
 MIDDLEWARE_CLASSES = list(filter(bool, MIDDLEWARE_CLASSES))
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    'compressor.finders.CompressorFinder',
-)
-
-
 _TEMPLATE_LOADERS = (
     'apptemplates.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.filesystem.Loader',
-    # 'admin_tools.template_loaders.Loader',
 )
 
 TEMPLATES = [
@@ -173,19 +129,20 @@ TEMPLATES = [
         'OPTIONS':{
             'context_processors': (
                 'django.contrib.auth.context_processors.auth',
-                'django.core.context_processors.debug',
-                'django.core.context_processors.i18n',
-                'django.core.context_processors.request',
-                'django.core.context_processors.media',
-                'django.core.context_processors.static',
-                'sekizai.context_processors.sekizai',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.request',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.request',
+                'django.template.context_processors.request',
                 'signalbox.context_processors.globals',
+                'sekizai.context_processors.sekizai'
             ),
-            'loaders': (
-                ('django.template.loaders.cached.Loader', _TEMPLATE_LOADERS),
-            )
+            # 'loaders': (
+            #     ('django.template.loaders.cached.Loader', _TEMPLATE_LOADERS),
+            # )
+            'loaders': _TEMPLATE_LOADERS,
         },
     },
 ]
@@ -210,7 +167,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django_admin_bootstrapped',
     'django.contrib.admin',
-    "compressor",
     'registration',
     USE_VERSIONING and 'reversion' or None,
     'django_extensions',
@@ -224,8 +180,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'mathfilters',
     'cachalot',
+    'phonenumber_field',
 ]
-
 
 # filter out conditionally-skipped apps (which create None's)
 INSTALLED_APPS = list(filter(bool, INSTALLED_APPS))
@@ -282,6 +238,7 @@ SHELL_PLUS_PRE_IMPORTS = (
 
 # security-related settings
 # see https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+INTERNAL_IPS = ['127.0.0.1',]
 ALLOWED_HOSTS = get_env_variable('ALLOWED_HOSTS', default="127.0.0.1;.herokuapp.com").split(";")
 SESSION_COOKIE_HTTPONLY = get_env_variable('SESSION_COOKIE_HTTPONLY', default=True)
 SECURE_FRAME_DENY = True
@@ -299,8 +256,9 @@ SESSION_COOKIE_SECURE = get_env_variable('SESSION_COOKIE_SECURE', default=False)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
+# DEBUG TOOLBAR SETUP
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.versions.VersionsPanel',
@@ -315,12 +273,13 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.signals.SignalsPanel',
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel'
-    # 'cachalot.panels.CachalotPanel',
 ]
 
 
+# CACHING
 
 CACHALOT_ENABLED = get_env_variable('CACHALOT_ENABLED', default=True)
+
 # this is just the default
 CACHES = {
     'default': {

@@ -1,1 +1,2 @@
-web: waitress-serve --expose-tracebacks --port=$PORT app.wsgi:application
+#web: python manage.py runserver 0.0.0.0:5000
+web: gunicorn app.wsgi
