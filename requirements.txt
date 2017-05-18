@@ -1,5 +1,5 @@
 Django <1.11
--e git+https://github.com/benwhalley/signalbox.git@master#egg=signalbox
+https://codeload.github.com/benwhalley/signalbox/zip/master#egg=signalbox
 django-extensions==1.5.9
 psycopg2==2.4.5
 waitress==0.8.9
