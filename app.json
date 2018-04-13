@@ -13,7 +13,7 @@
     "env": {
         "SECRET_KEY": {
             "description": "A secret key for Django",
-            "generator": "secret"
+            "required": true
         },
         "BRAND_NAME":{
             "description": "The name of your organisaion, or a name to appear in the banner of the website.",
