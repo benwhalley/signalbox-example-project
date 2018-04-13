@@ -8,7 +8,7 @@
         "mailgun"
     ],
     "scripts": {
-        "postdeploy": "finishinstall.sh"
+        "postdeploy": "./finishinstall.sh"
     },
     "env": {
         
