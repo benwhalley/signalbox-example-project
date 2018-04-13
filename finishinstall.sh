@@ -6,4 +6,4 @@ python manage.py migrate auth --fake-initial
 python manage.py migrate  --fake-initial
 
 # set the superuser
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', '$DJANGO_ADMIN_USER_EMAIL', '$DJANGO_ADMIN_USER_PASSWORD'); exit()" |  python manage.py shell
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('$DJANGO_ADMIN_USERNAME', '$DJANGO_ADMIN_USER_EMAIL', '$DJANGO_ADMIN_USER_PASSWORD'); exit()" |  python manage.py shell

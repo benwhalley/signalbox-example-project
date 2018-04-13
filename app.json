@@ -11,17 +11,16 @@
         "postdeploy": "./finishinstall.sh"
     },
     "env": {   
-   
-        "DEBUG":"1", 
-        "DISABLE_COLLECTSTATIC":"1", 
         
-        "SECRET_KEY": {
-            "description": "A secret key for Django",
-            "required": true
-        },
         "BRAND_NAME":{
             "description": "The name of your organisaion, or a name to appear in the banner of the website.",
             "default": "Signalbox"
+        },
+
+        "DJANGO_ADMIN_USERNAME": {
+            "description": "The username for the first superuser (added as part of setup).",
+            "required": true
+            "value": "admin"
         },
         "DJANGO_ADMIN_USER_EMAIL": {
             "description": "The email address for the default 'admin' user",
@@ -31,6 +30,7 @@
             "description": "A password for the default 'admin' user",
             "required": true
         },
+        
         "TWILIO_ID": {
             "description": "Your Twilio ID (optional; required for SMS and phone calls). See https://www.twilio.com/help/faq/twilio-basics/what-is-the-auth-token-and-how-can-it-be-reset for details.",
             "required": false
@@ -50,6 +50,34 @@
         "AWS_STORAGE_BUCKET_NAME": {
             "description": "The AWS bucket to use for file storage (optional).",
             "required": false
-        }
+        },
+        
+
+        "SECRET_KEY": {
+            "description": "A secret key for Django",
+            "generator": "secret"
+        },
+        
+        "DEBUG": {
+            "description": "The Django debug setting. Set to False for production.",
+            "value": "1"
+        },
+
+        "DISABLE_COLLECTSTATIC": {
+            "description": "Not needed on heroku.",
+            "value": "1"
+        },
+
+        "LOGIN_FROM_OBSERVATION_TOKEN": {
+            "description": "Allows users to login automatically from an email link.",
+            "value": "0"
+        },
+
+        "GOOGLE_TRACKING_ID": {
+            "description": "Google analytics key",
+            "required": false
+        } 
+        
+
     }
 }
