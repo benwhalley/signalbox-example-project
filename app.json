@@ -11,6 +11,12 @@
         "postdeploy": "finishinstall.sh"
     },
     "env": {
+        
+   
+    "DISABLE_COLLECTSTATIC":"1", 
+   
+        
+        
         "SECRET_KEY": {
             "description": "A secret key for Django",
             "required": true
