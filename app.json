@@ -4,6 +4,7 @@
     "repository": "https://github.com/benwhalley/signalbox-example-project",
     "website": "https://http://www.thesignalbox.net/",
     "success_url": "/complete/setup/",
+    
     "addons": [
         "scheduler:standard",
         "heroku-postgresql",
@@ -12,6 +13,7 @@
     "scripts": {
         "postdeploy": "./finishinstall.sh"
     },
+    
     "env": {   
         
         "BRAND_NAME":{
@@ -21,7 +23,7 @@
 
         "DJANGO_ADMIN_USERNAME": {
             "description": "The username for the first superuser (added as part of setup).",
-            "required": true
+            "required": true,
             "value": "admin"
         },
         "DJANGO_ADMIN_USER_EMAIL": {
@@ -78,7 +80,7 @@
         "GOOGLE_TRACKING_ID": {
             "description": "Google analytics key",
             "required": false
-        } 
+        }
         
 
     }
