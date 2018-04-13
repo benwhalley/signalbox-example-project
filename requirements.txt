@@ -2,7 +2,7 @@ django==1.7
 -e git+https://github.com/puterleat/signalbox.git@master#egg=signalbox
 django-extensions==1.3.6
 django-mptt==0.5.2
-psycopg2==2.4.1
+psycopg2==2.7
 waitress==0.8.9
 -e git+https://github.com/django-compressor/django-compressor.git#egg=django-compressor
 -e hg+https://bitbucket.org/david/django-storages@02afdf3d27871a3588ede24b00e4fdb9e99cd807#egg=django_storages-dev
