@@ -48,9 +48,13 @@ DATABASES = {'default': dj_database_url.config(default=DB_URL)}
 
 
 
+# DON'T LEAVE ME THIS WAY!!!!
+SECRET_KEY = get_env_variable('SECRET_KEY', default="boohoohoo")
+DEBUG = get_env_variable('DEBUG', default=True)
+
+
 from signalbox.configurable_settings import *
 from signalbox.settings import *
-
 
 # amazon files settings
 AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID', default="")

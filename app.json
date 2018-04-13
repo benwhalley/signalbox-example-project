@@ -8,14 +8,12 @@
         "mailgun"
     ],
     "scripts": {
-        "postdeploy": "finishinstall.sh"
+        "postdeploy": "./finishinstall.sh"
     },
-    "env": {
-        
+    "env": {   
    
-    "DISABLE_COLLECTSTATIC":"1", 
-   
-        
+        "DEBUG":"1", 
+        "DISABLE_COLLECTSTATIC":"1", 
         
         "SECRET_KEY": {
             "description": "A secret key for Django",
