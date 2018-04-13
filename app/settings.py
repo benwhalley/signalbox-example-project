@@ -19,6 +19,8 @@ COMPRESS_JINJA2_GET_ENVIRONMENT = "None"
 from signalbox.configurable_settings import *
 from signalbox.settings import *
 
+# DON'T LEAVE ME THIS WAY!!!!
+SECRET_KEY = get_env_variable('SECRET_KEY', default="boohoohoo")
 
 # amazon files settings
 AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID', default="")
