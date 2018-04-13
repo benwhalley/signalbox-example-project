@@ -18,6 +18,7 @@ COMPRESS_JINJA2_GET_ENVIRONMENT = "None"
 
 # DON'T LEAVE ME THIS WAY!!!!
 SECRET_KEY = get_env_variable('SECRET_KEY', default="boohoohoo")
+DEBUG = get_env_variable('DEBUG', default=True)
 
 
 from signalbox.configurable_settings import *
