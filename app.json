@@ -4,7 +4,6 @@
     "success_url": "/complete/setup/",
     "addons": [
         "scheduler:standard",
-        "pgbackups:auto-month",
         "heroku-postgresql",
         "mailgun"
     ],
@@ -12,9 +11,15 @@
         "postdeploy": "finishinstall.sh"
     },
     "env": {
+        
+   
+    "DISABLE_COLLECTSTATIC":"1", 
+   
+        
+        
         "SECRET_KEY": {
             "description": "A secret key for Django",
-            "generator": "secret"
+            "required": true
         },
         "BRAND_NAME":{
             "description": "The name of your organisaion, or a name to appear in the banner of the website.",
