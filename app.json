@@ -1,6 +1,8 @@
 {
     "name": "SignalBox Example Project",
     "description": "Run your own SignalBox. (Note, once you enter your details the application build process can take about 10 minutes, so be patient).",
+    "repository": "https://github.com/benwhalley/signalbox-example-project",
+    "website": "https://http://www.thesignalbox.net/",
     "success_url": "/complete/setup/",
     "addons": [
         "scheduler:standard",
@@ -57,7 +59,7 @@
             "description": "A secret key for Django",
             "generator": "secret"
         },
-        
+
         "DEBUG": {
             "description": "The Django debug setting. Set to False for production.",
             "value": "1"
