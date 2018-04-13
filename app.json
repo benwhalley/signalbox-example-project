@@ -2,7 +2,7 @@
     "name": "SignalBox Example Project",
     "description": "Run your own SignalBox. (Note, once you enter your details the application build process can take about 10 minutes, so be patient).",
     "repository": "https://github.com/benwhalley/signalbox-example-project",
-    "website": "http://www.thesignalbox.net/",
+    "website": "https://www.thesignalbox.net/",
     "success_url": "/complete/setup/",
     
     "addons": [
